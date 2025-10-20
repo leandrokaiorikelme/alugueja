@@ -341,144 +341,263 @@
         </div>
 
         <!-- LOGIN PAGE -->
-        <div id="login" class="page">
-            <section class="py-20 px-6">
-                <div class="max-w-md mx-auto">
-                    <div class="bg-white p-8 rounded-2xl shadow-lg">
-                        <div class="text-center mb-8">
-                            <div class="bg-primary text-white p-4 rounded-xl mx-auto w-16 h-16 flex items-center justify-center mb-4">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2L2 7v10c0 5.55 3.84 10 9 11 1.09-.21 2.28-.71 3.33-1.36 1.05.65 2.24 1.15 3.33 1.36 5.16-1 9-5.45 9-11V7l-10-5z"/>
-                                </svg>
-                            </div>
-                            <h1 class="text-3xl font-bold text-secondary mb-2">Bem-vindo de volta!</h1>
-                            <p class="text-gray-600">Entre na sua conta para continuar</p>
-                        </div>
-
-                        <form class="space-y-6">
-                            <div>
-                                <label class="block text-secondary font-semibold mb-2">Email</label>
-                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="seu@email.com">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-secondary font-semibold mb-2">Senha</label>
-                                <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Sua senha">
-                            </div>
-
-                            <div class="flex items-center justify-between">
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="mr-2 text-primary">
-                                    <span class="text-sm text-gray-600">Lembrar de mim</span>
-                                </label>
-                                <a href="#" class="text-sm text-primary hover:text-primary-dark">Esqueceu a senha?</a>
-                            </div>
-
-                            <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-dark transition-colors">
-                                Entrar
-                            </button>
-                        </form>
-
-                        <div class="text-center mt-6">
-                            <p class="text-gray-600">
-                                Não tem conta? 
-                                <button onclick="showPage('cadastro')" class="text-primary hover:text-primary-dark font-semibold">Cadastre-se aqui</button>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+      <!-- LOGIN PAGE -->
+<div id="login" class="page hidden">
+  <section class="py-20 px-6">
+    <div class="max-w-md mx-auto">
+      <div class="bg-white p-8 rounded-2xl shadow-lg">
+        <div class="text-center mb-8">
+          <div class="bg-primary text-white p-4 rounded-xl mx-auto w-16 h-16 flex items-center justify-center mb-4">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2L2 7v10c0 5.55 3.84 10 9 11 1.09-.21 2.28-.71 3.33-1.36 1.05.65 2.24 1.15 3.33 1.36 5.16-1 9-5.45 9-11V7l-10-5z"/>
+            </svg>
+          </div>
+          <h1 class="text-3xl font-bold text-secondary mb-2">Bem‑vindo de volta!</h1>
+          <p class="text-gray-600">Entre na sua conta para continuar</p>
         </div>
 
-        <!-- CADASTRO PAGE -->
-        <div id="cadastro" class="page">
-            <section class="py-20 px-6">
-                <div class="max-w-2xl mx-auto">
-                    <div class="bg-white p-8 rounded-2xl shadow-lg">
-                        <div class="text-center mb-8">
-                            <div class="bg-primary text-white p-4 rounded-xl mx-auto w-16 h-16 flex items-center justify-center mb-4">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2L2 7v10c0 5.55 3.84 10 9 11 1.09-.21 2.28-.71 3.33-1.36 1.05.65 2.24 1.15 3.33 1.36 5.16-1 9-5.45 9-11V7l-10-5z"/>
-                                </svg>
-                            </div>
-                            <h1 class="text-3xl font-bold text-secondary mb-2">Crie sua conta</h1>
-                            <p class="text-gray-600">Junte-se a milhares de profissionais que confiam na Alugue Já</p>
-                        </div>
+        <form id="loginForm" class="space-y-6" novalidate autocomplete="off">
+          <div>
+            <label for="loginEmail" class="block text-secondary font-semibold mb-2">Email <span class="text-red-500" aria-hidden="true">*</span></label>
+            <input id="loginEmail" name="email" type="email" required aria‑required="true" aria-describedby="loginEmailError"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              placeholder="seu@email.com">
+            <p class="mt-1 text-sm text-red-600 hidden" id="loginEmailError" role="alert">Por favor digite um email válido.</p>
+          </div>
 
-                        <form class="space-y-6">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-secondary font-semibold mb-2">Nome</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Seu nome">
-                                </div>
-                                <div>
-                                    <label class="block text-secondary font-semibold mb-2">Sobrenome</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Seu sobrenome">
-                                </div>
-                            </div>
+          <div>
+            <label for="loginPassword" class="block text-secondary font-semibold mb-2">Senha <span class="text-red-500" aria-hidden="true">*</span></label>
+            <div class="relative">
+              <input id="loginPassword" name="password" type="password" required aria‑required="true" aria-describedby="loginPasswordError"
+                minlength="6"
+                class="w-full px-4 py-3 border border-gray‑300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                placeholder="Sua senha">
+              <button type="button" id="toggleLoginPwd" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600" aria-label="Mostrar senha">
+                👁️
+              </button>
+            </div>
+            <p class="mt-1 text-sm text-red-600 hidden" id="loginPasswordError" role="alert">A senha precisa ter no mínimo 6 caracteres.</p>
+          </div>
 
-                            <div>
-                                <label class="block text-secondary font-semibold mb-2">Email</label>
-                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="seu@email.com">
-                            </div>
+          <div class="flex items-center justify-between">
+            <label class="flex items-center">
+              <input type="checkbox" name="remember" class="mr-2 text-primary">
+              <span class="text-sm text-gray-600">Lembrar de mim</span>
+            </label>
+            <a href="#" class="text-sm text-primary hover:text-primary-dark">Esqueceu a senha?</a>
+          </div>
 
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-secondary font-semibold mb-2">Telefone</label>
-                                    <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="(11) 99999-9999">
-                                </div>
-                                <div>
-                                    <label class="block text-secondary font-semibold mb-2">CPF</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="000.000.000-00">
-                                </div>
-                            </div>
+          <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-dark transition-colors">
+            Entrar
+          </button>
+        </form>
 
-                            <div>
-                                <label class="block text-secondary font-semibold mb-2">Tipo de Usuário</label>
-                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20">
-                                    <option>Pessoa Física</option>
-                                    <option>Pessoa Jurídica</option>
-                                    <option>Profissional Autônomo</option>
-                                </select>
-                            </div>
-
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-secondary font-semibold mb-2">Senha</label>
-                                    <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Crie uma senha segura">
-                                </div>
-                                <div>
-                                    <label class="block text-secondary font-semibold mb-2">Confirmar Senha</label>
-                                    <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Confirme sua senha">
-                                </div>
-                            </div>
-
-                            <div class="space-y-3">
-                                <label class="flex items-start">
-                                    <input type="checkbox" class="mr-3 mt-1 text-primary" required>
-                                    <span class="text-sm text-gray-600">Aceito os <a href="#" class="text-primary hover:text-primary-dark">termos de uso</a> e <a href="#" class="text-primary hover:text-primary-dark">política de privacidade</a></span>
-                                </label>
-                                <label class="flex items-start">
-                                    <input type="checkbox" class="mr-3 mt-1 text-primary">
-                                    <span class="text-sm text-gray-600">Desejo receber ofertas e novidades por email</span>
-                                </label>
-                            </div>
-
-                            <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-dark transition-colors">
-                                Criar Conta Gratuita
-                            </button>
-                        </form>
-
-                        <div class="text-center mt-6">
-                            <p class="text-gray-600">
-                                Já tem conta? 
-                                <button onclick="showPage('login')" class="text-primary hover:text-primary-dark font-semibold">Faça login</button>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <div class="text-center mt-6">
+          <p class="text-gray-600">
+            Não tem conta?
+            <button type="button" onclick="showPage('cadastro')" class="text-primary hover:text-primary-dark font-semibold">Cadastre‑se aqui</button>
+          </p>
         </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CADASTRO PAGE -->
+<div id="cadastro" class="page hidden">
+  <section class="py-20 px-6">
+    <div class="max-w-2xl mx-auto">
+      <div class="bg-white p-8 rounded-2xl shadow-lg">
+        <div class="text-center mb-8">
+          <div class="bg-primary text-white p-4 rounded-xl mx-auto w-16 h-16 flex items-center justify-center mb-4">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2L2 7v10c0 5.55 3.84 10 9 11 1.09-.21 2.28-.71 3.33-1.36 1.05.65 2.24 1.15 3.33-1.36 5.16-1 9-5.45 9-11V7l-10-5z"/>
+            </svg>
+          </div>
+          <h1 class="text-3xl font-bold text-secondary mb-2">Crie sua conta</h1>
+          <p class="text-gray-600">Junte‑se a milhares de profissionais que confiam na Alugue Já</p>
+        </div>
+
+        <form id="signupForm" class="space-y-6" novalidate autocomplete="off">
+          <fieldset class="grid md:grid-cols-2 gap-6">
+            <legend class="sr-only">Nome e Sobrenome</legend>
+            <div>
+              <label for="signupFirstName" class="block text-secondary font-semibold mb-2">Nome <span class="text-red-500" aria-hidden="true">*</span></label>
+              <input id="signupFirstName" name="firstName" type="text" required aria‑required="true" aria-describedby="signupFirstNameError"
+                class="w-full px-4 py-3 border border-gray‑300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                placeholder="Seu nome">
+              <p class="mt-1 text-sm text-red-600 hidden" id="signupFirstNameError" role="alert">Digite seu nome.</p>
+            </div>
+            <div>
+              <label for="signupLastName" class="block text-secondary font-semibold mb-2">Sobrenome <span class="text-red-500" aria-hidden="true">*</span></label>
+              <input id="signupLastName" name="lastName" type="text" required aria‑required="true" aria-describedby="signupLastNameError"
+                class="w-full px-4 py-3 border border-gray‑300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                placeholder="Seu sobrenome">
+              <p class="mt-1 text-sm text-red-600 hidden" id="signupLastNameError" role="alert">Digite seu sobrenome.</p>
+            </div>
+          </fieldset>
+
+          <div>
+            <label for="signupEmail" class="block text-secondary font-semibold mb-2">Email <span class="text-red-500" aria-hidden="true">*</span></label>
+            <input id="signupEmail" name="email" type="email" required aria‑required="true" aria-describedby="signupEmailError"
+              class="w-full px-4 py-3 border border-gray‑300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              placeholder="seu@email.com">
+            <p class="mt-1 text-sm text-red-600 hidden" id="signupEmailError" role="alert">Digite um email válido.</p>
+          </div>
+
+          <fieldset class="grid md:grid-cols-2 gap-6">
+            <legend class="sr-only">Telefone e CPF</legend>
+            <div>
+              <label for="signupPhone" class="block text-secondary font-semibold mb-2">Telefone</label>
+              <input id="signupPhone" name="phone" type="tel" aria-describedby="signupPhoneError"
+                class="w-full px-4 py-3 border border-gray‑300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                placeholder="(11) 99999‑9999">
+              <p class="mt-1 text-sm text-red-600 hidden" id="signupPhoneError" role="alert">Use o formato correto.</p>
+            </div>
+            <div>
+              <label for="signupCPF" class="block text-secondary font-semibold mb-2">CPF</label>
+              <input id="signupCPF" name="cpf" type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" aria-describedby="signupCPFError"
+                class="w-full px-4 py-3 border border-gray‑300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                placeholder="000.000.000‑00">
+              <p class="mt-1 text-sm text-red-600 hidden" id="signupCPFError" role="alert">Formato: 000.000.000‑00</p>
+            </div>
+          </fieldset>
+
+          <div>
+            <label for="signupUserType" class="block text-secondary font-semibold mb-2">Tipo de Usuário <span class="text-red-500" aria-hidden="true">*</span></label>
+            <select id="signupUserType" name="userType" required aria‑required="true" aria-describedby="signupUserTypeError"
+              class="w-full px-4 py-3 border border-gray‑300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20">
+              <option value="">Selecione</option>
+              <option value="pf">Pessoa Física</option>
+              <option value="pj">Pessoa Jurídica</option>
+              <option value="autonomo">Profissional Autônomo</option>
+            </select>
+            <p class="mt-1 text-sm text-red-600 hidden" id="signupUserTypeError" role="alert">Selecione o tipo de usuário.</p>
+          </div>
+
+          <fieldset class="grid md:grid-cols-2 gap-6">
+            <legend class="sr-only">Senha e Confirmação</legend>
+            <div>
+              <label for="signupPassword" class="block text-secondary font-semibold mb-2">Senha <span class="text-red-500" aria-hidden="true">*</span></label>
+              <div class="relative">
+                <input id="signupPassword" name="password" type="password" required aria‑required="true" aria-describedby="signupPasswordError"
+                  minlength="8"
+                  class="w-full px-4 py-3 border border-gray‑300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  placeholder="Crie uma senha segura">
+                <button type="button" id="toggleSignupPwd" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600" aria-label="Mostrar senha">
+                  👁️
+                </button>
+              </div>
+              <p class="mt-1 text-sm text-red-600 hidden" id="signupPasswordError" role="alert">A senha precisa ter no mínimo 8 caracteres.</p>
+            </div>
+            <div>
+              <label for="signupConfirmPassword" class="block text-secondary font-semibold mb-2">Confirmar Senha <span class="text-red-500" aria-hidden="true">*</span></label>
+              <input id="signupConfirmPassword" name="confirmPassword" type="password" required aria‑required="true" aria-describedby="signupConfirmPasswordError"
+                class="w-full px-4 py-3 border border-gray‑300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                placeholder="Confirme sua senha">
+              <p class="mt-1 text-sm text-red-600 hidden" id="signupConfirmPasswordError" role="alert">As senhas não coincidem.</p>
+            </div>
+          </fieldset>
+
+          <div class="space-y-3">
+            <label class="flex items-start">
+              <input type="checkbox" name="terms" required aria‑required="true" class="mr-3 mt-1 text-primary">
+              <span class="text-sm text-gray-600">Aceito os <a href="#" class="text-primary hover:text-primary-dark">termos de uso</a> e <a href="#" class="text-primary hover:text-primary-dark">política de privacidade</a></span>
+            </label>
+            <label class="flex items-start">
+              <input type="checkbox" name="offers" class="mr-3 mt-1 text-primary">
+              <span class="text-sm text-gray-600">Desejo receber ofertas e novidades por email</span>
+            </label>
+          </div>
+
+          <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-dark transition-colors">
+            Criar Conta Gratuita
+          </button>
+        </form>
+
+        <div class="text-center mt-6">
+          <p class="text-gray-600">
+            Já tem conta?
+            <button type="button" onclick="showPage('login')" class="text-primary hover:text-primary-dark font-semibold">Faça login</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+// Alterna entre páginas
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(el => el.classList.add('hidden'));
+  document.getElementById(pageId).classList.remove('hidden');
+  document.getElementById(pageId).querySelector('input, select, button').focus();
+}
+showPage('login');
+
+// Toggle mostrar/ocultar senha
+document.getElementById('toggleLoginPwd').addEventListener('click', e => {
+  const pwd = document.getElementById('loginPassword');
+  pwd.type = pwd.type === 'password' ? 'text' : 'password';
+});
+document.getElementById('toggleSignupPwd').addEventListener('click', e => {
+  const pwd = document.getElementById('signupPassword');
+  pwd.type = pwd.type === 'password' ? 'text' : 'password';
+});
+
+// Validação
+function validateForm(form) {
+  let valid = true;
+  form.querySelectorAll('p[id$="Error"]').forEach(p => p.classList.add('hidden'));
+
+  // Loop inputs
+  form.querySelectorAll('input, select').forEach(el => {
+    if (el.hasAttribute('required') && !el.value.trim()) {
+      const err = document.getElementById(el.id + 'Error');
+      if (err) err.classList.remove('hidden');
+      el.setAttribute('aria-invalid','true');
+      valid = false;
+    } else {
+      el.removeAttribute('aria-invalid');
+    }
+  });
+
+  // Validação específica
+  const pwd = form.querySelector('input[name="password"]');
+  const pwdConfirm = form.querySelector('input[name="confirmPassword"]');
+  if (pwd && pwdConfirm && pwd.value !== pwdConfirm.value) {
+    document.getElementById('signupConfirmPasswordError').classList.remove('hidden');
+    pwdConfirm.setAttribute('aria-invalid','true');
+    valid = false;
+  }
+
+  const email = form.querySelector('input[type="email"]');
+  if (email && !email.checkValidity()) {
+    document.getElementById(email.id + 'Error').classList.remove('hidden');
+    email.setAttribute('aria-invalid','true');
+    valid = false;
+  }
+
+  return valid;
+}
+
+// Eventos submit
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  if (!validateForm(this)) {
+    e.preventDefault();
+  } else {
+    // Aqui pode enviar via fetch/AJAX ou submissão normal
+    // Mostrar loading etc.
+  }
+});
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+  if (!validateForm(this)) {
+    e.preventDefault();
+  } else {
+    // Idem
+  }
+});
+</script>
 
         <!-- COMO FUNCIONA PAGE -->
         <div id="como-funciona" class="page">
@@ -998,4 +1117,5 @@
     </style>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9918ae528669f610',t:'MTc2MDk2NTA0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
