@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alugue Já - Plataforma de Aluguel de Ferramentas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#FBBF24',
+                        'primary-dark': '#F59E0B',
+                        'secondary': '#1F2937',
+                        'accent': '#FEF3C7'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="showPage('home')">
+                    <div class="bg-primary text-white p-3 rounded-xl">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10 9 11 1.09-.21 2.28-.71 3.33-1.36 1.05.65 2.24 1.15 3.33 1.36 5.16-1 9-5.45 9-11V7l-10-5z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-secondary">Alugue Já</div>
+                        <div class="text-sm text-gray-500">Ferramentas Profissionais</div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden lg:flex space-x-8">
+                    <button onclick="showPage('home')" class="nav-link text-secondary hover:text-primary font-medium transition-colors">Início</button>
+                    <button onclick="showPage('ferramentas')" class="nav-link text-secondary hover:text-primary font-medium transition-colors">Ferramentas</button>
+                    <button onclick="showPage('como-funciona')" class="nav-link text-secondary hover:text-primary font-medium transition-colors">Como Funciona</button>
+                    <button onclick="showPage('planos')" class="nav-link text-secondary hover:text-primary font-medium transition-colors">Planos</button>
+                    <button onclick="showPage('contato')" class="nav-link text-secondary hover:text-primary font-medium transition-colors">Contato</button>
+                </nav>
+
+                <!-- Auth Buttons -->
+                <div class="flex items-center space-x-4">
+                    <button onclick="showPage('login')" class="text-secondary hover:text-primary font-medium transition-colors">Entrar</button>
+                    <button onclick="showPage('cadastro')" class="bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-dark transition-colors">Cadastrar</button>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="lg:hidden text-secondary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden lg:hidden mt-4 pb-4 border-t border-gray-200">
+                <div class="flex flex-col space-y-3 pt-4">
+                    <button onclick="showPage('home')" class="text-left text-secondary hover:text-primary font-medium">Início</button>
+                    <button onclick="showPage('ferramentas')" class="text-left text-secondary hover:text-primary font-medium">Ferramentas</button>
+                    <button onclick="showPage('como-funciona')" class="text-left text-secondary hover:text-primary font-medium">Como Funciona</button>
+                    <button onclick="showPage('planos')" class="text-left text-secondary hover:text-primary font-medium">Planos</button>
+                    <button onclick="showPage('contato')" class="text-left text-secondary hover:text-primary font-medium">Contato</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Container -->
+    <div id="pageContainer">
+        
+        <!-- HOME PAGE -->
+        <div id="home" class="page active">
+            <!-- Hero Section -->
+            <section class="bg-gradient-to-br from-accent to-white py-20 px-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h1 class="text-5xl lg:text-6xl font-bold text-secondary mb-6">
+                                Alugue as <span class="text-primary">Melhores Ferramentas</span> do Mercado
+                            </h1>
+                            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                                Plataforma digital que conecta você às ferramentas profissionais que precisa, quando precisa. Economize dinheiro e tenha acesso a equipamentos de qualidade.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button onclick="showPage('cadastro')" class="bg-primary text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-primary-dark transition-colors shadow-lg">
+                                    Começar Agora
+                                </button>
+                                <button onclick="showPage('ferramentas')" class="border-2 border-secondary text-secondary px-8 py-4 rounded-lg font-bold text-lg hover:bg-secondary hover:text-white transition-colors">
+                                    Ver Ferramentas
+                                </button>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div class="bg-white p-8 rounded-2xl shadow-2xl">
+                                <div class="grid grid-cols-2 gap-6">
+                                    <div class="text-center">
+                                        <div class="bg-primary text-white p-4 rounded-xl mb-3 mx-auto w-16 h-16 flex items-center justify-center text-2xl">🔨</div>
+                                        <div class="font-bold text-secondary">Construção</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="bg-primary text-white p-4 rounded-xl mb-3 mx-auto w-16 h-16 flex items-center justify-center text-2xl">🌿</div>
+                                        <div class="font-bold text-secondary">Jardinagem</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="bg-primary text-white p-4 rounded-xl mb-3 mx-auto w-16 h-16 flex items-center justify-center text-2xl">⚡</div>
+                                        <div class="font-bold text-secondary">Elétrica</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="bg-primary text-white p-4 rounded-xl mb-3 mx-auto w-16 h-16 flex items-center justify-center text-2xl">🚗</div>
+                                        <div class="font-bold text-secondary">Automotiva</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="py-16 px-6 bg-white">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">500+</div>
+                            <div class="text-gray-600 font-medium">Ferramentas Disponíveis</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">15k+</div>
+                            <div class="text-gray-600 font-medium">Usuários Ativos</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">80+</div>
+                            <div class="text-gray-600 font-medium">Cidades Atendidas</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">99%</div>
+                            <div class="text-gray-600 font-medium">Satisfação</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="py-20 px-6 bg-gray-50">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-secondary mb-4">Por que escolher a Alugue Já?</h2>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Oferecemos a melhor experiência em aluguel de ferramentas com tecnologia, qualidade e economia.</p>
+                    </div>
+                    
+                    <div class="grid lg:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                            <div class="bg-primary text-white w-16 h-16 rounded-xl flex items-center justify-center text-2xl mb-6">💰</div>
+                            <h3 class="text-2xl font-bold text-secondary mb-4">Economia Garantida</h3>
+                            <p class="text-gray-600 leading-relaxed">Pague apenas pelo tempo que usar. Sem investimento inicial, sem manutenção, sem armazenamento.</p>
+                        </div>
+                        
+                        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                            <div class="bg-primary text-white w-16 h-16 rounded-xl flex items-center justify-center text-2xl mb-6">🔧</div>
+                            <h3 class="text-2xl font-bold text-secondary mb-4">Qualidade Profissional</h3>
+                            <p class="text-gray-600 leading-relaxed">Todas as ferramentas são revisadas, testadas e mantidas em perfeito estado de funcionamento.</p>
+                        </div>
+                        
+                        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                            <div class="bg-primary text-white w-16 h-16 rounded-xl flex items-center justify-center text-2xl mb-6">📱</div>
+                            <h3 class="text-2xl font-bold text-secondary mb-4">Plataforma Intuitiva</h3>
+                            <p class="text-gray-600 leading-relaxed">Interface simples e moderna. Alugue, gerencie e acompanhe tudo pelo seu celular ou computador.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- FERRAMENTAS PAGE -->
+        <div id="ferramentas" class="page">
+            <section class="py-20 px-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h1 class="text-4xl font-bold text-secondary mb-4">Catálogo de Ferramentas</h1>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Encontre a ferramenta perfeita para seu projeto. Todas revisadas e em perfeito estado.</p>
+                    </div>
+
+                    <!-- Search and Filter -->
+                    <div class="bg-white p-6 rounded-2xl shadow-lg mb-12">
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <input type="text" placeholder="Buscar ferramentas..." class="px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
+                            <select class="px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
+                                <option>Todas as categorias</option>
+                                <option>Construção Civil</option>
+                                <option>Jardinagem</option>
+                                <option>Elétrica</option>
+                                <option>Automotiva</option>
+                            </select>
+                            <select class="px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
+                                <option>Ordenar por preço</option>
+                                <option>Menor preço</option>
+                                <option>Maior preço</option>
+                                <option>Mais populares</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Categories Grid -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                            <div class="bg-gradient-to-br from-primary to-primary-dark p-8 text-center">
+                                <div class="text-6xl mb-4">🔨</div>
+                                <h3 class="text-2xl font-bold text-white">Construção Civil</h3>
+                            </div>
+                            <div class="p-6">
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex justify-between">
+                                        <span>Furadeira Profissional</span>
+                                        <span class="font-bold text-primary">R$ 25/dia</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Martelo Demolidor</span>
+                                        <span class="font-bold text-primary">R$ 45/dia</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Serra Circular</span>
+                                        <span class="font-bold text-primary">R$ 35/dia</span>
+                                    </div>
+                                </div>
+                                <button class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-dark transition-colors">
+                                    Ver Todas (24)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                            <div class="bg-gradient-to-br from-green-500 to-green-600 p-8 text-center">
+                                <div class="text-6xl mb-4">🌿</div>
+                                <h3 class="text-2xl font-bold text-white">Jardinagem</h3>
+                            </div>
+                            <div class="p-6">
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex justify-between">
+                                        <span>Cortador de Grama</span>
+                                        <span class="font-bold text-primary">R$ 30/dia</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Podador Elétrico</span>
+                                        <span class="font-bold text-primary">R$ 20/dia</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Soprador de Folhas</span>
+                                        <span class="font-bold text-primary">R$ 25/dia</span>
+                                    </div>
+                                </div>
+                                <button class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-dark transition-colors">
+                                    Ver Todas (18)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                            <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-8 text-center">
+                                <div class="text-6xl mb-4">⚡</div>
+                                <h3 class="text-2xl font-bold text-white">Elétrica</h3>
+                            </div>
+                            <div class="p-6">
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex justify-between">
+                                        <span>Multímetro Digital</span>
+                                        <span class="font-bold text-primary">R$ 15/dia</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Alicate Amperímetro</span>
+                                        <span class="font-bold text-primary">R$ 20/dia</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Detector de Tensão</span>
+                                        <span class="font-bold text-primary">R$ 12/dia</span>
+                                    </div>
+                                </div>
+                                <button class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-dark transition-colors">
+                                    Ver Todas (15)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Popular Tools -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-secondary mb-8">Ferramentas Mais Alugadas</h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors">
+                                <div class="text-3xl mb-3">🔧</div>
+                                <h4 class="font-bold text-secondary mb-2">Furadeira Impact</h4>
+                                <p class="text-gray-600 text-sm mb-3">Bosch Professional</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-primary font-bold">R$ 25/dia</span>
+                                    <button class="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary-dark transition-colors">Alugar</button>
+                                </div>
+                            </div>
+
+                            <div class="border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors">
+                                <div class="text-3xl mb-3">⚡</div>
+                                <h4 class="font-bold text-secondary mb-2">Serra Tico-Tico</h4>
+                                <p class="text-gray-600 text-sm mb-3">Makita Profissional</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-primary font-bold">R$ 30/dia</span>
+                                    <button class="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary-dark transition-colors">Alugar</button>
+                                </div>
+                            </div>
+
+                            <div class="border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors">
+                                <div class="text-3xl mb-3">🔨</div>
+                                <h4 class="font-bold text-secondary mb-2">Parafusadeira</h4>
+                                <p class="text-gray-600 text-sm mb-3">DeWalt 20V Max</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-primary font-bold">R$ 20/dia</span>
+                                    <button class="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary-dark transition-colors">Alugar</button>
+                                </div>
+                            </div>
+
+                            <div class="border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors">
+                                <div class="text-3xl mb-3">🌿</div>
+                                <h4 class="font-bold text-secondary mb-2">Cortador Grama</h4>
+                                <p class="text-gray-600 text-sm mb-3">Honda Autopropelido</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-primary font-bold">R$ 35/dia</span>
+                                    <button class="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary-dark transition-colors">Alugar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- LOGIN PAGE -->
+        <div id="login" class="page">
+            <section class="py-20 px-6">
+                <div class="max-w-md mx-auto">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="text-center mb-8">
+                            <div class="bg-primary text-white p-4 rounded-xl mx-auto w-16 h-16 flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7v10c0 5.55 3.84 10 9 11 1.09-.21 2.28-.71 3.33-1.36 1.05.65 2.24 1.15 3.33 1.36 5.16-1 9-5.45 9-11V7l-10-5z"/>
+                                </svg>
+                            </div>
+                            <h1 class="text-3xl font-bold text-secondary mb-2">Bem-vindo de volta!</h1>
+                            <p class="text-gray-600">Entre na sua conta para continuar</p>
+                        </div>
+
+                        <form class="space-y-6">
+                            <div>
+                                <label class="block text-secondary font-semibold mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="seu@email.com">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-secondary font-semibold mb-2">Senha</label>
+                                <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Sua senha">
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2 text-primary">
+                                    <span class="text-sm text-gray-600">Lembrar de mim</span>
+                                </label>
+                                <a href="#" class="text-sm text-primary hover:text-primary-dark">Esqueceu a senha?</a>
+                            </div>
+
+                            <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-dark transition-colors">
+                                Entrar
+                            </button>
+                        </form>
+
+                        <div class="text-center mt-6">
+                            <p class="text-gray-600">
+                                Não tem conta? 
+                                <button onclick="showPage('cadastro')" class="text-primary hover:text-primary-dark font-semibold">Cadastre-se aqui</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CADASTRO PAGE -->
+        <div id="cadastro" class="page">
+            <section class="py-20 px-6">
+                <div class="max-w-2xl mx-auto">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="text-center mb-8">
+                            <div class="bg-primary text-white p-4 rounded-xl mx-auto w-16 h-16 flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7v10c0 5.55 3.84 10 9 11 1.09-.21 2.28-.71 3.33-1.36 1.05.65 2.24 1.15 3.33 1.36 5.16-1 9-5.45 9-11V7l-10-5z"/>
+                                </svg>
+                            </div>
+                            <h1 class="text-3xl font-bold text-secondary mb-2">Crie sua conta</h1>
+                            <p class="text-gray-600">Junte-se a milhares de profissionais que confiam na Alugue Já</p>
+                        </div>
+
+                        <form class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-secondary font-semibold mb-2">Nome</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Seu nome">
+                                </div>
+                                <div>
+                                    <label class="block text-secondary font-semibold mb-2">Sobrenome</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Seu sobrenome">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-secondary font-semibold mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="seu@email.com">
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-secondary font-semibold mb-2">Telefone</label>
+                                    <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="(11) 99999-9999">
+                                </div>
+                                <div>
+                                    <label class="block text-secondary font-semibold mb-2">CPF</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="000.000.000-00">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-secondary font-semibold mb-2">Tipo de Usuário</label>
+                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20">
+                                    <option>Pessoa Física</option>
+                                    <option>Pessoa Jurídica</option>
+                                    <option>Profissional Autônomo</option>
+                                </select>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-secondary font-semibold mb-2">Senha</label>
+                                    <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Crie uma senha segura">
+                                </div>
+                                <div>
+                                    <label class="block text-secondary font-semibold mb-2">Confirmar Senha</label>
+                                    <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Confirme sua senha">
+                                </div>
+                            </div>
+
+                            <div class="space-y-3">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="mr-3 mt-1 text-primary" required>
+                                    <span class="text-sm text-gray-600">Aceito os <a href="#" class="text-primary hover:text-primary-dark">termos de uso</a> e <a href="#" class="text-primary hover:text-primary-dark">política de privacidade</a></span>
+                                </label>
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="mr-3 mt-1 text-primary">
+                                    <span class="text-sm text-gray-600">Desejo receber ofertas e novidades por email</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-dark transition-colors">
+                                Criar Conta Gratuita
+                            </button>
+                        </form>
+
+                        <div class="text-center mt-6">
+                            <p class="text-gray-600">
+                                Já tem conta? 
+                                <button onclick="showPage('login')" class="text-primary hover:text-primary-dark font-semibold">Faça login</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- COMO FUNCIONA PAGE -->
+        <div id="como-funciona" class="page">
+            <section class="py-20 px-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h1 class="text-4xl font-bold text-secondary mb-4">Como Funciona</h1>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Processo simples e seguro para você ter acesso às melhores ferramentas profissionais</p>
+                    </div>
+
+                    <!-- Process Steps -->
+                    <div class="grid lg:grid-cols-4 gap-8 mb-20">
+                        <div class="text-center">
+                            <div class="bg-primary text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">1</div>
+                            <h3 class="text-xl font-bold text-secondary mb-4">Cadastre-se</h3>
+                            <p class="text-gray-600">Crie sua conta gratuita em menos de 2 minutos. Processo 100% online e seguro.</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="bg-primary text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">2</div>
+                            <h3 class="text-xl font-bold text-secondary mb-4">Escolha a Ferramenta</h3>
+                            <p class="text-gray-600">Navegue pelo nosso catálogo e encontre a ferramenta perfeita para seu projeto.</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="bg-primary text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">3</div>
+                            <h3 class="text-xl font-bold text-secondary mb-4">Agende e Pague</h3>
+                            <p class="text-gray-600">Defina datas de retirada e devolução. Pagamento seguro online ou na retirada.</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="bg-primary text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">4</div>
+                            <h3 class="text-xl font-bold text-secondary mb-4">Retire e Use</h3>
+                            <p class="text-gray-600">Retire na loja parceira mais próxima e realize seu projeto com qualidade profissional.</p>
+                        </div>
+                    </div>
+
+                    <!-- Features Grid -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                        <div>
+                            <h2 class="text-3xl font-bold text-secondary mb-6">Vantagens da Alugue Já</h2>
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-primary text-white p-2 rounded-lg">✓</div>
+                                    <div>
+                                        <h4 class="font-bold text-secondary mb-2">Economia Real</h4>
+                                        <p class="text-gray-600">Economize até 80% comparado à compra. Sem custos de manutenção ou armazenamento.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-primary text-white p-2 rounded-lg">✓</div>
+                                    <div>
+                                        <h4 class="font-bold text-secondary mb-2">Qualidade Garantida</h4>
+                                        <p class="text-gray-600">Todas as ferramentas são revisadas e testadas antes de cada aluguel.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-primary text-white p-2 rounded-lg">✓</div>
+                                    <div>
+                                        <h4 class="font-bold text-secondary mb-2">Suporte Completo</h4>
+                                        <p class="text-gray-600">Equipe especializada para tirar dúvidas e dar suporte durante todo o processo.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-primary text-white p-2 rounded-lg">✓</div>
+                                    <div>
+                                        <h4 class="font-bold text-secondary mb-2">Flexibilidade Total</h4>
+                                        <p class="text-gray-600">Alugue por dias, semanas ou meses. Estenda o prazo quando necessário.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-accent p-8 rounded-2xl">
+                            <h3 class="text-2xl font-bold text-secondary mb-6">Exemplo Prático</h3>
+                            <div class="space-y-4">
+                                <div class="bg-white p-4 rounded-lg">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">Furadeira Profissional</span>
+                                        <span class="text-primary font-bold">R$ 25/dia</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">3 dias de uso</span>
+                                        <span class="text-secondary font-bold">R$ 75</span>
+                                    </div>
+                                </div>
+                                <div class="border-t pt-4">
+                                    <div class="flex justify-between items-center text-lg">
+                                        <span class="font-bold">Total</span>
+                                        <span class="text-primary font-bold">R$ 75</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-2">vs. R$ 400+ para comprar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PLANOS PAGE -->
+        <div id="planos" class="page">
+            <section class="py-20 px-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h1 class="text-4xl font-bold text-secondary mb-4">Escolha seu Plano</h1>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Planos flexíveis para atender desde o usuário ocasional até grandes empresas</p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 gap-8">
+                        <!-- Plano Básico -->
+                        <div class="bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="text-center mb-8">
+                                <h3 class="text-2xl font-bold text-secondary mb-2">Básico</h3>
+                                <div class="text-4xl font-bold text-secondary mb-2">Gratuito</div>
+                                <p class="text-gray-600">Para uso ocasional</p>
+                            </div>
+                            
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Acesso ao catálogo completo</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Até 2 aluguéis por mês</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Suporte por email</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> App mobile</li>
+                                <li class="flex items-center"><span class="text-red-500 mr-3">✗</span> Desconto em aluguéis</li>
+                                <li class="flex items-center"><span class="text-red-500 mr-3">✗</span> Suporte prioritário</li>
+                            </ul>
+                            
+                            <button class="w-full bg-gray-200 text-secondary py-3 rounded-lg font-bold hover:bg-gray-300 transition-colors">
+                                Plano Atual
+                            </button>
+                        </div>
+
+                        <!-- Plano Pro -->
+                        <div class="bg-white p-8 rounded-2xl shadow-xl border-2 border-primary relative">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary text-white px-6 py-2 rounded-full text-sm font-bold">
+                                Mais Popular
+                            </div>
+                            
+                            <div class="text-center mb-8">
+                                <h3 class="text-2xl font-bold text-secondary mb-2">Pro</h3>
+                                <div class="text-4xl font-bold text-primary mb-2">R$ 39<span class="text-lg text-gray-600">/mês</span></div>
+                                <p class="text-gray-600">Para profissionais</p>
+                            </div>
+                            
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Tudo do plano Básico</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Aluguéis ilimitados</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> 15% de desconto</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Suporte prioritário</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Relatórios de uso</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Reserva antecipada</li>
+                            </ul>
+                            
+                            <button class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-dark transition-colors">
+                                Escolher Pro
+                            </button>
+                        </div>
+
+                        <!-- Plano Empresarial -->
+                        <div class="bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="text-center mb-8">
+                                <h3 class="text-2xl font-bold text-secondary mb-2">Empresarial</h3>
+                                <div class="text-4xl font-bold text-secondary mb-2">R$ 149<span class="text-lg text-gray-600">/mês</span></div>
+                                <p class="text-gray-600">Para empresas</p>
+                            </div>
+                            
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Tudo do plano Pro</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> 25% de desconto</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Gestão de equipe</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Relatórios avançados</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Gerente de conta</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Faturamento corporativo</li>
+                            </ul>
+                            
+                            <button class="w-full bg-secondary text-white py-3 rounded-lg font-bold hover:bg-gray-800 transition-colors">
+                                Falar com Vendas
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Planos -->
+                    <div class="mt-20">
+                        <h2 class="text-3xl font-bold text-center text-secondary mb-12">Perguntas Frequentes sobre Planos</h2>
+                        <div class="max-w-4xl mx-auto space-y-4">
+                            <div class="bg-white rounded-lg shadow-md">
+                                <button class="w-full text-left p-6 font-bold text-secondary hover:text-primary transition-colors" onclick="toggleFAQ('plano1')">
+                                    Posso mudar de plano a qualquer momento?
+                                    <span id="faq-icon-plano1" class="float-right">+</span>
+                                </button>
+                                <div id="faq-content-plano1" class="hidden px-6 pb-6 text-gray-600">
+                                    Sim! Você pode fazer upgrade ou downgrade do seu plano a qualquer momento. As mudanças são aplicadas no próximo ciclo de cobrança.
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg shadow-md">
+                                <button class="w-full text-left p-6 font-bold text-secondary hover:text-primary transition-colors" onclick="toggleFAQ('plano2')">
+                                    Como funciona o desconto nos planos pagos?
+                                    <span id="faq-icon-plano2" class="float-right">+</span>
+                                </button>
+                                <div id="faq-content-plano2" class="hidden px-6 pb-6 text-gray-600">
+                                    O desconto é aplicado automaticamente no valor de cada aluguel. No plano Pro você economiza 15% e no Empresarial 25% em todos os aluguéis.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTATO PAGE -->
+        <div id="contato" class="page">
+            <section class="py-20 px-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h1 class="text-4xl font-bold text-secondary mb-4">Entre em Contato</h1>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Estamos aqui para ajudar! Entre em contato conosco através dos canais abaixo</p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-16">
+                        <!-- Contact Info -->
+                        <div>
+                            <h2 class="text-2xl font-bold text-secondary mb-8">Fale Conosco</h2>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-primary text-white p-3 rounded-lg">📞</div>
+                                    <div>
+                                        <h4 class="font-bold text-secondary mb-1">Telefone</h4>
+                                        <p class="text-gray-600">(11) 4000-0000</p>
+                                        <p class="text-sm text-gray-500">Seg-Sex: 8h às 18h | Sáb: 8h às 12h</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-primary text-white p-3 rounded-lg">📧</div>
+                                    <div>
+                                        <h4 class="font-bold text-secondary mb-1">Email</h4>
+                                        <p class="text-gray-600">contato@alugueja.com.br</p>
+                                        <p class="text-sm text-gray-500">Resposta em até 24h</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-primary text-white p-3 rounded-lg">💬</div>
+                                    <div>
+                                        <h4 class="font-bold text-secondary mb-1">WhatsApp</h4>
+                                        <p class="text-gray-600">(11) 99999-0000</p>
+                                        <p class="text-sm text-gray-500">Atendimento rápido</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-primary text-white p-3 rounded-lg">📍</div>
+                                    <div>
+                                        <h4 class="font-bold text-secondary mb-1">Endereço</h4>
+                                        <p class="text-gray-600">Av. Paulista, 1000 - Sala 1501<br>Bela Vista, São Paulo - SP<br>CEP: 01310-100</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Social Media -->
+                            <div class="mt-12">
+                                <h3 class="text-xl font-bold text-secondary mb-4">Siga-nos</h3>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-colors">📘</a>
+                                    <a href="#" class="bg-pink-600 text-white p-3 rounded-lg hover:bg-pink-700 transition-colors">📷</a>
+                                    <a href="#" class="bg-blue-400 text-white p-3 rounded-lg hover:bg-blue-500 transition-colors">🐦</a>
+                                    <a href="#" class="bg-blue-800 text-white p-3 rounded-lg hover:bg-blue-900 transition-colors">💼</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <div class="bg-white p-8 rounded-2xl shadow-lg">
+                            <h3 class="text-2xl font-bold text-secondary mb-6">Envie sua Mensagem</h3>
+                            
+                            <form class="space-y-6">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-secondary font-semibold mb-2">Nome</label>
+                                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Seu nome">
+                                    </div>
+                                    <div>
+                                        <label class="block text-secondary font-semibold mb-2">Email</label>
+                                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="seu@email.com">
+                                    </div>
+                                </div>
+                                
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-secondary font-semibold mb-2">Telefone</label>
+                                        <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="(11) 99999-9999">
+                                    </div>
+                                    <div>
+                                        <label class="block text-secondary font-semibold mb-2">Assunto</label>
+                                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20">
+                                            <option>Dúvida sobre aluguel</option>
+                                            <option>Suporte técnico</option>
+                                            <option>Parceria comercial</option>
+                                            <option>Reclamação</option>
+                                            <option>Sugestão</option>
+                                            <option>Outro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-secondary font-semibold mb-2">Mensagem</label>
+                                    <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Descreva sua dúvida ou solicitação..."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-dark transition-colors">
+                                    Enviar Mensagem
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="bg-primary text-white p-3 rounded-xl">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10 9 11 1.09-.21 2.28-.71 3.33-1.36 1.05.65 2.24 1.15 3.33 1.36 5.16-1 9-5.45 9-11V7l-10-5z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="text-xl font-bold">Alugue Já</div>
+                            <div class="text-sm text-gray-400">Ferramentas Profissionais</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">A plataforma digital que revoluciona o acesso a ferramentas profissionais no Brasil.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-primary transition-colors">📘</a>
+                        <a href="#" class="text-gray-300 hover:text-primary transition-colors">📷</a>
+                        <a href="#" class="text-gray-300 hover:text-primary transition-colors">🐦</a>
+                        <a href="#" class="text-gray-300 hover:text-primary transition-colors">💼</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold mb-6">Empresa</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#" class="hover:text-primary transition-colors">Sobre Nós</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Carreiras</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Imprensa</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold mb-6">Suporte</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#" class="hover:text-primary transition-colors">Central de Ajuda</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Status do Sistema</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Segurança</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold mb-6">Legal</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#" class="hover:text-primary transition-colors">Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Política de Privacidade</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Cookies</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">LGPD</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 Alugue Já Tecnologia Ltda. Todos os direitos reservados. | CNPJ: 12.345.678/0001-90</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation System
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+            
+            // Update navigation active state
+            updateNavigation(pageId);
+            
+            // Close mobile menu
+            document.getElementById('mobileMenu').classList.add('hidden');
+        }
+
+        function updateNavigation(activePageId) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary', 'font-bold');
+                link.classList.add('text-secondary');
+            });
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        function toggleFAQ(id) {
+            const content = document.getElementById(`faq-content-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            
+            if (content && icon) {
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    icon.textContent = '-';
+                } else {
+                    content.classList.add('hidden');
+                    icon.textContent = '+';
+                }
+            }
+        }
+
+        // Form Submissions (Demo)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Login form
+            const loginForm = document.querySelector('#login form');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Demo: Login realizado com sucesso! Redirecionando para o dashboard...');
+                    showPage('home');
+                });
+            }
+
+            // Register form
+            const registerForm = document.querySelector('#cadastro form');
+            if (registerForm) {
+                registerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Demo: Cadastro realizado com sucesso! Bem-vindo à Alugue Já!');
+                    showPage('home');
+                });
+            }
+
+            // Contact form
+            const contactForm = document.querySelector('#contato form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Demo: Mensagem enviada com sucesso! Retornaremos em breve.');
+                    this.reset();
+                });
+            }
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
+        });
+    </script>
+
+    <style>
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .nav-link.active {
+            color: #FBBF24 !important;
+            font-weight: bold;
+        }
+        
+        /* Smooth transitions */
+        * {
+            transition: all 0.3s ease;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #FBBF24;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #F59E0B;
+        }
+    </style>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9918ae528669f610',t:'MTc2MDk2NTA0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
